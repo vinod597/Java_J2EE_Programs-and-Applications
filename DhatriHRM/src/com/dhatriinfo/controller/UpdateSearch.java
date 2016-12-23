@@ -24,14 +24,37 @@ public class UpdateSearch extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 String employeeId=request.getParameter("employeeId");
+		  String employeeId=request.getParameter("employeeId");
+		    String employeeName=request.getParameter("employeeName");
+		    String employeeSalary=request.getParameter("employeeSalary");
+		    String Location=request.getParameter("Location");
+		    String experiance=request.getParameter("experiance");
+		    String Loan=request.getParameter("Loan");
+		    System.out.println(" In Do POst");
+		    
+		    double salary;
+		    float exp;
+	     try{
+	    	 
+		     salary =Double.parseDouble(employeeSalary);
+		     exp=Float.parseFloat(experiance);
+		    }catch(Exception e){
+		    	salary=0.0;
+				exp=0.0f;
+		   }
+		     Employee empBean= new Employee();
+		    empBean.setEmployeeId(employeeId);
+		    empBean.setEmployeeName(employeeName);
+			empBean.setEmployeeSalary(salary);
+		    empBean.setLocation(Location);
+		   	empBean.setExperiance(exp);
 			
 	        DatabaseOperations dao=new DatabaseOperations();
 			
 			ArrayList<Employee> empList=dao.search(employeeId);
 			
 			HttpSession session=request.getSession();
-			session.setAttribute("employeeList", empList);
+			session.setAttribute("EmployeeList", empList);
 			RequestDispatcher requestDis=request.getRequestDispatcher("UpdateResp.jsp");
 			
 			requestDis.forward(request, response);

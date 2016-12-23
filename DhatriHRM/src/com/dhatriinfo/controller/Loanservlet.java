@@ -52,10 +52,9 @@ public class Loanservlet extends HttpServlet {
 		
 		ArrayList<Employee> empList=dbo.loan(tempid);
 	
-		RequestDispatcher requestDispact=request.getRequestDispatcher("LoanSucess.jsp");
-		
 		HttpSession session=request.getSession();
 		session.setAttribute("employeeList", empList);
+		RequestDispatcher requestDispact=request.getRequestDispatcher("LoanSucess.jsp");
 		
 			requestDispact.forward(request, response);
 

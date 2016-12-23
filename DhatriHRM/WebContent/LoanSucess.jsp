@@ -1,3 +1,4 @@
+<%@page import="com.dhatriinfo.dao.DatabaseOperations"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.dhatriinfo.bean.Employee"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,16 +11,17 @@
 <title>Successfully Applied For Loan</title>
 </head>
 <body>
+<h1></h1>
 <div align="center">
-<h3>
+
 <%
 
 Object obj=session.getAttribute("employeeList");
-
+DatabaseOperations dbo=new DatabaseOperations();
 //String empid=(String)session.getAttribute("tempid");
 //out.print("Applied Employee Id for loan" );
 
-
+Employee emp=null;
 if(obj!=null)
 {
 	%>
@@ -31,8 +33,7 @@ if(obj!=null)
 	</tr>
 	<%
 	ArrayList<Employee> empList=(ArrayList)obj;
-	Iterator it=empList.iterator();
-	Employee emp=null;
+	Iterator it=empList.iterator();	
 	while(it.hasNext())
 	{
 		emp=(Employee)it.next();
@@ -52,10 +53,12 @@ else
 	out.print("no data");
 }
 %>
-</h3>
+
 </table>
-<br>
-<br>
+<form action="LoanServletUpdate" method="post">
+ <input type="text" value="<%=emp.getEmployeeId()%>" name="employeeId" readonly/>
+  <input type="submit" value="Proceed"/>
+  </form>
 <a href="Welcome.html">Go To HomePage</a>
 </div>
 </body>

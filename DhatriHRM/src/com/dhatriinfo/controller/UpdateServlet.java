@@ -34,7 +34,6 @@ public class UpdateServlet extends HttpServlet {
 		    String employeeSalary=request.getParameter("employeeSalary");
 		    String Location=request.getParameter("Location");
 		    String experiance=request.getParameter("experiance");
-		    String Loan=request.getParameter("Loan");
 		    System.out.println("Do POst");
 		    
 		    double salary;
