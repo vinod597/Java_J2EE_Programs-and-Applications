@@ -19,39 +19,56 @@ import com.dhatriinfo.dao.DatabaseOperations;
  */
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
+       String emp=request.getParameter("employee");
+		String id = request.getParameter("dropdown");
+		
+	if (id.equals("id")) {
+			//String employeeId = request.getParameter("id");
+			DatabaseOperations dao = new DatabaseOperations();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-        String employeeId=request.getParameter("employeeId");
-		
-        DatabaseOperations dao=new DatabaseOperations();
-		
-		ArrayList<Employee> empList=dao.search(employeeId);
-		
-		HttpSession session=request.getSession();
-		session.setAttribute("employeeList", empList);
-		RequestDispatcher requestDis=request.getRequestDispatcher("Search.jsp");
-		
-		requestDis.forward(request, response);
-	}
+			ArrayList<Employee> empList = dao.search(emp);
+			HttpSession session = request.getSession();
+			session.setAttribute("employeeList", empList);
+			RequestDispatcher requestDis = request
+					.getRequestDispatcher("SearchResult.jsp");
+    	requestDis.forward(request, response);
+		}
 
+		else if (id.equals("name")) {
+	//		String employeeName = request.getParameter("name");
+
+			DatabaseOperations dao = new DatabaseOperations();
+
+			ArrayList<Employee> empList = dao.search1(emp);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("employeeList", empList);
+			RequestDispatcher requestDis = request
+					.getRequestDispatcher("SearchResult.jsp");
+
+			requestDis.forward(request, response);
+
+		} else if (id.equals("salary")) {
+		//	String employeeSalary = request.getParameter("salary");
+			double Salary;
+			try {
+				Salary = Double.parseDouble(emp);
+			} catch (Exception e) {
+				Salary = 0.0;
+			}
+
+			DatabaseOperations dao = new DatabaseOperations();
+			ArrayList<Employee> empList = dao.search2(Salary);
+			HttpSession session = request.getSession();
+			session.setAttribute("employeeList", empList);
+			RequestDispatcher requestDis = request
+					.getRequestDispatcher("SearchResult.jsp");
+
+			requestDis.forward(request, response);
+		}
+	}
 }

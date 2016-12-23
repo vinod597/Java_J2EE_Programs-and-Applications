@@ -15,73 +15,15 @@
   <div align="center">
     <a href="Welcome.html">Go To HomePage</a>
     <h1></h1>  
-	<form action="SearchServlet" method="post">
-    <input type="text" name="employeeId"> <input type="submit" value="SearchById">
-    <h5>Or</h5>
-	</form>
-  <div align="center">
+<form action="SearchServlet" method="post">
+ <select name="dropdown">
+ <option value="id">Id</option>
+ <option value="name">Name</option>
+ <option value="salary">Salary</option>
+ </select>
+ <input type="text" name="employee"> 
+ <input type="submit" value="Search">
+ </form>
  </div>
- <div align="center">
-	<form action="SearchByName" method="post">
-    <input type="text" name="employeeName"> <input type="submit" value="SearchByName">
-    <h5>Or</h5>
-	</form>
-  <div align="center">
- </div>
- <div align="center">
-	<form action="SearchBySalary" method="post">
-    <input type="text" name="employeeSalary"> <input type="submit" value="employeeSalary">
-	</form>
-  <div align="center">
- </div>
- </div>
- </div>
-<h1></h1>
-  
-		<%
-			Object obj = session.getAttribute("employeeList");
-
-			if (obj != null) {
-				
-		%>
-		<table align="center" cellspacing="0" cellpadding="8" borders="1" width="40%">
-			<tr>
-				<th>Id |</th> 
-				<th>Name |</th> 
-				<th>Salary |</th>
-				<th>Experiance |</th> 
-				<th>Location |</th> 
-				<th>Loan</th> 
-		
-			</tr>
-			
-			<%
-				ArrayList<Employee> employeeList = (ArrayList) obj;
-					Iterator iterator = employeeList.iterator();
-					Employee employeebean = null;
-					while (iterator.hasNext()) {
-						employeebean = (Employee) iterator.next();
-			%>
-			<tr>
-				<td><%=employeebean.getEmployeeId()%></td>
-				<td><%=employeebean.getEmployeeName()%></td>
-				<td><%=employeebean.getEmployeeSalary()%></td>
-				<td><%=employeebean.getExperiance()%></td>
-				<td><%=employeebean.getLocation()%></td>
-				<td><%=employeebean.getEmploan()%>
-
-			</tr>
-
-			<%
-				}
-				session.removeAttribute("employeeList");
-				} else if(obj == null) {
-					out.print("No Data");
-				}
-			%>
-		</table>
-
-	</div>
-
 </body>
 </html>
