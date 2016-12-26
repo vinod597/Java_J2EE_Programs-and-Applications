@@ -111,7 +111,7 @@ public class DatabaseOperations {
 	public ArrayList<Employee> search(String employeeId) {
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 
-		String query = "select Id,Name,Salary,Experiance,Location,Loan from employee where Id=?";
+		String query = "select Id,Name,Salary,Experiance,Location,Loan,Emi from employee where Id=?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -128,6 +128,7 @@ public class DatabaseOperations {
 				empBean.setExperiance(resultSet.getFloat(4));
 				empBean.setLocation(resultSet.getString(5));
 				empBean.setEmploan(resultSet.getDouble(6));
+				empBean.setEmi(resultSet.getDouble(7));
 				employeeList.add(empBean);
 
 			}
@@ -142,7 +143,7 @@ public class DatabaseOperations {
 	public ArrayList<Employee> search1(String employeeName) {
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 
-		String query = "select Id,Name,Salary,Experiance,Location,Loan from employee where Name=?";
+		String query = "select Id,Name,Salary,Experiance,Location,Loan,Emi from employee where Name=?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -159,6 +160,7 @@ public class DatabaseOperations {
 				empBean.setExperiance(resultSet.getFloat(4));
 				empBean.setLocation(resultSet.getString(5));
 				empBean.setEmploan(resultSet.getDouble(6));
+				empBean.setEmi(resultSet.getDouble(7));
 				employeeList.add(empBean);
 
 			}
@@ -173,7 +175,7 @@ public class DatabaseOperations {
 	public ArrayList<Employee> search2(double employeeSalary) {
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 
-		String query = "select Id,Name,Salary,Experiance,Location,Loan from employee where Salary=?";
+		String query = "select Id,Name,Salary,Experiance,Location,Loan,Emi from employee where Salary=?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -190,6 +192,7 @@ public class DatabaseOperations {
 				empBean.setExperiance(resultSet.getFloat(4));
 				empBean.setLocation(resultSet.getString(5));
 				empBean.setEmploan(resultSet.getDouble(6));
+				empBean.setEmi(resultSet.getDouble(7));
 				employeeList.add(empBean);
 
 			}

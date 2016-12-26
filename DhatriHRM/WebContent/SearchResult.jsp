@@ -1,63 +1,88 @@
 <%@page import="java.util.Iterator"%>
+
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.dhatriinfo.bean.Employee"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.dhatriinfo.dao.DatabaseOperations"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search</title>
+<title>Insert title here</title>
 </head>
-<body >
-   <h1></h1>  
+<body>
+<div align="center">
+<h1></h1>
+<table>
+<tr>
+<th>Employee Id |</th> 
+<th>Employee Name  |</th> 
+<th> Salary  |</th> 
+<th> Exp |</th>
+<th> Location |</th>
+<th>Loan Amount |</th>
+<th>Monthly Emi</th>
 
-  <div align="center">
-    <a href="Welcome.html">Go To HomePage</a>
-		<%
-			Object obj = session.getAttribute("employeeList");
+</tr>
 
-			if (obj != null) {
-				
-		%>
-		<table align="center" cellspacing="0" cellpadding="8" borders="1" width="40%">
+
+
+<%
+String searchVariable=request.getParameter("searchRes");
+
+if(searchVariable!=null)
+{
+	
+	DatabaseOperations dao=new DatabaseOperations();
+	ArrayList<Employee> employeeArray=dao.search(searchVariable);
+	
+	if(employeeArray!=null)
+	{
+		Employee employeeBean=null;
+		Iterator<Employee> iteratore=employeeArray.iterator();
+		 while(iteratore.hasNext())
+		 {
+			 employeeBean=(Employee)iteratore.next();
+		 }
+		 
+		if(employeeBean!=null)
+		{
+			%>
+
 			<tr>
-				<th>Id |</th> 
-				<th>Name |</th> 
-				<th>Salary |</th>
-				<th>Experiance |</th> 
-				<th>Location |</th> 
-				<th>Loan</th> 
-		
+			
+			<td><%=employeeBean.getEmployeeId() %> |</td> 
+			<td><%=employeeBean.getEmployeeName() %> |</td>
+			<td><%=employeeBean.getEmployeeSalary() %>|</td>
+			<td><%=employeeBean.getExperiance() %> |</td>
+			<td><%=employeeBean.getLocation() %> |</td>
+			<td><%=employeeBean.getEmploan() %> |</td>
+			<td><%=employeeBean.getEmi() %></td>
+			
 			</tr>
 			
 			<%
-				ArrayList<Employee> employeeList = (ArrayList) obj;
-					Iterator iterator = employeeList.iterator();
-					Employee employeebean = null;
-					while (iterator.hasNext()) {
-						employeebean = (Employee) iterator.next();
-			%>
-			<tr>
-				<td><%=employeebean.getEmployeeId()%></td>
-				<td><%=employeebean.getEmployeeName()%></td>
-				<td><%=employeebean.getEmployeeSalary()%></td>
-				<td><%=employeebean.getExperiance()%></td>
-				<td><%=employeebean.getLocation()%></td>
-				<td><%=employeebean.getEmploan()%>
+		}
+		else
+		{
+			out.println("Id Not Found");
+		}
+		
+	}
+	else
+	{
+		out.println("No Data Fuond");
+	}
+	
+}
 
-			</tr>
+%>
+</table>
 
-			<%
-				}
-				session.removeAttribute("employeeList");
-				} else if(obj == null) {
-					out.print("No Data");
-				}
-			%>
-		</table>
-
-	</div>
+</div>
 
 </body>
 </html>

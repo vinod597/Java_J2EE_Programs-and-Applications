@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div align="center">
 <h3></h3>
 <%
 String employeeId=(String)session.getAttribute("employeeId");
@@ -15,8 +16,8 @@ out.print("Your employee Id : " +employeeId);
 
 
 %>
-</h3>
-<div align="left">
+</div>
+<div align="center">
 <h1></h1>
 <a href="Welcome.html" >Home</a>
 </div>

@@ -17,8 +17,9 @@ out.print("Employee deleted Sucessfully : " +employeeId);
 }else {
    out.print("No Data");
 }
-
 %>
-
+<div align="center">
+    <a href="Welcome.html">Go To HomePage</a>
+    </div>
 </body>
 </html>

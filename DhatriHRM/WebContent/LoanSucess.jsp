@@ -46,7 +46,7 @@ if(obj!=null)
 		</tr>
 		<%
 	}
-	session.removeAttribute("empList");
+	session.removeAttribute("employeeList");
 }
 else
 {
@@ -59,7 +59,7 @@ else
  <input type="text" value="<%=emp.getEmployeeId()%>" name="employeeId" readonly/>
   <input type="submit" value="Proceed"/>
   </form>
-<a href="Welcome.html">Go To HomePage</a>
+<a href="Welcome.html">Cancel</a>
 </div>
 </body>
 </html>

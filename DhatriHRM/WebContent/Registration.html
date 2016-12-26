@@ -5,6 +5,19 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor="pink">
+
+<script type="text/javascript">
+function validation() {
+	var employeeId=document.getElementById("employeeId").value();
+	if(employeeId==""||employeeId==null)
+		{
+		document.getElementById("error").innerHTML="please enter id";
+		return false;
+		}else 
+			return true;
+}
+
+</script>
 <form action="dhatriHrm" method="post">
 <table align="center" cellspacing="0" cellpadding="8" borders="1" width="40%">
 <tr><td colspan="2" align="center"><h2>Enter Employee Details</h2></td></tr>
@@ -14,7 +27,7 @@
 <tr><td>Location:</td><td align="center"><input type="text" id="Location" name="Location" placeholder="Enter location"></td></tr>
 <tr><td>Experiance:</td><td align="center"><input type="text" id="experiance" name="experiance" placeholder="Enter experiance"></td></tr>
   <tr><td colspan="2" align="right">
-  <input type="submit" value="submit"/></td></tr>
+  <input type="submit" value="submit" onclick="return validation()"></td></tr>
 </table>
 </form>
 </body>

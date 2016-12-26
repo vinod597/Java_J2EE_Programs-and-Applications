@@ -1,15 +1,19 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="com.dhatriinfo.bean.Employee"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.dhatriinfo.dao.DatabaseOperations"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
-
 <script language="javascript" type="text/javascript">  
 var xmlHttp;  
 var xmlHttp;
-function showResult(updateVariable){
+function showResult(searchVariable){
 if (typeof XMLHttpRequest != "undefined"){
 xmlHttp= new XMLHttpRequest();
 
@@ -22,13 +26,14 @@ xmlHttp= new XMLHttpRequest();
   alert("Browser does not support XMLHTTP Request")
   return;
   } 
-  var url="UpdateResp.jsp";
-  url +="?updateRes=" +updateVariable;
+  var url="SearchResult.jsp";
+  url +="?searchRes=" +searchVariable;
   xmlHttp.onreadystatechange = stateChange;
   xmlHttp.open("GET", url, true);
   xmlHttp.send();
   }
- function stateChange(){   
+
+  function stateChange(){   
   if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
    document.getElementById("result").innerHTML=xmlHttp.responseText; 
    
@@ -36,18 +41,15 @@ xmlHttp= new XMLHttpRequest();
   }
   </script>
   
-<body>
-<body bgcolor="pink">
-<div align="center">
-<table>
-<h2>Update Employee Details</h2>
-<a href="Welcome.html">Home</a>
-<h1></h1>
-Employee Id:<input type="text" name="employeeId" onkeyup="showResult(this.value)"></td></tr>
 
- </table>
- </div>
- <div id="result"></div>
-</form>
+<body>
+<h1></h1>
+<div align="center">
+Enter Id <input type="text" name="search" onkeyup="showResult(this.value)"> 
+
+</div>
+<div id="result"></div>
+
+
 </body>
 </html>
