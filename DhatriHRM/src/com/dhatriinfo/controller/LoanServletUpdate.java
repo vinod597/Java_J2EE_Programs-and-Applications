@@ -37,7 +37,7 @@ public class LoanServletUpdate extends HttpServlet {
 		RequestDispatcher requestDispact=request.getRequestDispatcher("Success.jsp");
 		
 		HttpSession session=request.getSession();
-		session.setAttribute("employeeList", empList);
+		//session.setAttribute("employeeList", empList);
 		
 			requestDispact.forward(request, response);	
 	}

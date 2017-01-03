@@ -40,8 +40,9 @@ xmlHttp= new XMLHttpRequest();
 <body bgcolor="pink">
 <div align="center">
 <table>
+<h1></h1>
+<a href="Welcome.html">HOME</a>
 <h2>Update Employee Details</h2>
-<a href="Welcome.html">Home</a>
 <h1></h1>
 Employee Id:<input type="text" name="employeeId" onkeyup="showResult(this.value)"></td></tr>
 

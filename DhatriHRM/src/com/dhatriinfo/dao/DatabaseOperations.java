@@ -18,11 +18,10 @@ public class DatabaseOperations {
 	public DatabaseOperations() {
 		connection = MyConnection.GetInstance().connection;
 	}
-
 	public int insertData(Employee empBean) {
 		int result = 0;
 		// Employee empBean= new Employee();
-		String query = "insert into employee values(?,?,?,?,?,?,?)";
+		String query = "insert into employee values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, empBean.getEmployeeId());
@@ -32,6 +31,12 @@ public class DatabaseOperations {
 			preparedStatement.setString(5, empBean.getLocation());
 			preparedStatement.setDouble(6, empBean.getEmploan());
 			preparedStatement.setDouble(7, empBean.getEmi());
+			preparedStatement.setString(8, empBean.getEmail());
+			preparedStatement.setString(9, empBean.getPassword());
+			preparedStatement.setString(10, empBean.getDesignation());
+			preparedStatement.setLong(11, empBean.getMobile());
+			preparedStatement.setString(12, empBean.getAddress());
+			
 			result = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -77,36 +82,6 @@ public class DatabaseOperations {
 		return 0;
 
 	}
-
-	public ArrayList<Employee> search() {
-		ArrayList<Employee> employeeList = new ArrayList<Employee>();
-
-		String query = "select * from employee ";
-
-		try {
-			preparedStatement = connection.prepareStatement(query);
-			// preparedStatement.setString(1, searchElement);
-
-			resultSet = preparedStatement.executeQuery();
-
-			Employee empBean = null;
-			while (resultSet.next()) {
-				empBean = new Employee();
-				empBean.setEmployeeId(resultSet.getString(1));
-				empBean.setEmployeeName(resultSet.getString(2));
-				empBean.setEmployeeSalary(resultSet.getDouble(3));
-				empBean.setLocation(resultSet.getString(4));
-				empBean.setExperiance(resultSet.getFloat(5));
-				employeeList.add(empBean);
-
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return employeeList;
-	}
-
 	// Search by Id
 	public ArrayList<Employee> search(String employeeId) {
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
@@ -262,7 +237,7 @@ public class DatabaseOperations {
 		}
 		return alist;
 	}
-	
+// Here updated the loan in database
  public ArrayList<Employee> updateLoan(String EmployeeId){
 	 ArrayList<Employee> alist = loan(EmployeeId);
 		Iterator<Employee> it = alist.iterator();
@@ -286,6 +261,46 @@ public class DatabaseOperations {
 		}
 		return alist;
 }
+ 
+ // here searching the data for user mail validation
+ public ArrayList<Employee> search3(String email) {
+		ArrayList<Employee> employeeList = new ArrayList<Employee>();
+		System.out.println(email);
+		String query = "select * from employee where Email=?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, email);
+
+			resultSet = preparedStatement.executeQuery();
+            System.out.println("after the resultset");
+			Employee empBean = null;
+			while (resultSet.next()) {
+				System.out.println("after while");
+				empBean = new Employee();
+				empBean.setEmployeeId(resultSet.getString(1));
+				empBean.setEmployeeName(resultSet.getString(2));
+				empBean.setEmployeeSalary(resultSet.getDouble(3));
+				empBean.setExperiance(resultSet.getFloat(4));
+				empBean.setLocation(resultSet.getString(5));
+				empBean.setEmploan(resultSet.getDouble(6));
+				empBean.setEmi(resultSet.getDouble(7));
+				empBean.setEmail(resultSet.getString(8));
+				empBean.setPassword(resultSet.getString(9));
+				empBean.setDesignation(resultSet.getString(10));
+				empBean.setMobile(resultSet.getLong(11));
+				empBean.setAddress(resultSet.getString(12));
+				
+				employeeList.add(empBean);
+				System.out.println(employeeList);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return employeeList;
+	}
+
 }
 
 

@@ -3,11 +3,17 @@ package com.dhatriinfo.bean;
 public class Employee {
 	private String employeeId;
 	private String employeeName;
+	private String designation;
 	private double employeeSalary;
 	private float experiance;
 	private String Location;
    private double emploan;
 	private double emi;
+	private String email;
+	private long mobile;
+	private String uname;
+	private String password;
+	private String address;
 	
 	
 	//Generate setters and getters
@@ -53,5 +59,41 @@ public class Employee {
 	public void setEmi(double emi) {
 		this.emi = emi;
 		}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getUname() {
+		return uname;
+	}
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public long getMobile() {
+		return mobile;
+	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	
 }
