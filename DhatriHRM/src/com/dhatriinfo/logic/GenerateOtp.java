@@ -3,7 +3,7 @@ package com.dhatriinfo.logic;
 import java.util.Random;
 
 public class GenerateOtp {
-	private static String employeeOtp = "0";
+	private static String employeeOtp = "";
 	private static GenerateOtp ref = new GenerateOtp();
 
 	private GenerateOtp() {
@@ -37,7 +37,7 @@ public class GenerateOtp {
 			}
 
 		} else {
-			for (int i = 0; i <= 3; i++) {
+			for (int i = 0; i <= 5; i++) {
 				uniqueNo = uniqueNo + factVal.charAt(i);
 			}
 
@@ -52,6 +52,9 @@ public class GenerateOtp {
 		for (int i = 1; i <= value; i++) {
 			fact = (fact * i) + value;
 		}
+		if(fact <0){
+			fact=fact*-1;
+		}
 
 		return fact;
 
@@ -65,8 +68,8 @@ public class GenerateOtp {
 		GenerateOtp.employeeOtp = employeeOtp;
 	}
 
-	/*public static void main(String[] args) {
-		//System.out.println(getEmployeeId());
-	}*/
+  public static void main(String[] args) {
+		System.out.println(getEmployeeId());
+	}
 
 }

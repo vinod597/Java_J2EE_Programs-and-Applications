@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="skyblue">
+<h1></h1>
 <%
 String mailotp=(String)session.getAttribute("otp");
 session.setMaxInactiveInterval(20);

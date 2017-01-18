@@ -44,6 +44,7 @@ public class Otpservlet extends HttpServlet {
 		String sessionotp=(String)session.getAttribute("otp");
 		
 		String userotp1=request.getParameter("loginotp");
+		
 		if(sessionotp!=null)
 		{
 		if(sessionotp.equals(userotp1))
